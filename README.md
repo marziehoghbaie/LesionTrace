@@ -2,7 +2,8 @@
 [![Python](https://img.shields.io/badge/Python-3.8+-blue.svg)](https://www.python.org/)
 [![PyTorch](https://img.shields.io/badge/PyTorch-1.13.0-orange.svg)](https://pytorch.org/)
 [![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
-[![arXiv](https://img.shields.io/badge/arXiv-2506.08900-red?logo=arXiv&logoColor=white)](https://)
+
+[//]: # ([![arXiv]&#40;https://img.shields.io/badge/arXiv-2506.08900-red?logo=arXiv&logoColor=white&#41;]&#40;https://&#41;)
 
 
 LesionTrace is a weakly supervised change detection model for longitudinal retinal OCT that produces spatially grounded lesion and change maps as interpretable outputs, and a pair-level disease activity prediction.
@@ -12,35 +13,45 @@ LesionTrace is a weakly supervised change detection model for longitudinal retin
 ## Overview
 
 LesionTrace bridges the complementary limitations of segmentation-based and pair-level change detection approaches by jointly producing:
-
-- **Per-visit lesion maps** $\mathbf{M}_t$, $\mathbf{M}_{t+1}$ — highlighting clinically relevant regions at each time point
-- **Content change map** $\mathbf{E}_{\text{content}}$ — tissue variation within the persistent lesion footprint
-- **Extent change map** $\mathbf{E}_{\text{extent}}$ — regions of new or resolved lesion activity
-- **Pair-level change prediction** $\hat{y} \in \{\text{Reduced, Stable, Increased}\}$
+- **Per-visit lesion maps** $\mathbf{M}_t$ and $\mathbf{M}_{t+1}$ highlight lesion regions at each visit.
+- **Content change map** $\mathbf{E}_{\text{content}}$ highlights changes in lesion appearance within regions where the lesion persists across visits.
+- **Extent change map** $\mathbf{E}_{\text{extent}}$ highlights regions where lesions appear or resolve between visits.
+- **Pair-level change prediction** $\hat{y} \in \{\text{Reduced}, \text{Stable}, \text{Increased}\}$ gives the predicted change class for the B-scan pair.
 
 ![LesionTrace Overview](Figures/LesionTrace-LesionTrace.png)
 
 ---
 
-## Method
+[//]: # (## Method)
 
-LesionTrace comprises four learnable components:
+[//]: # ()
+[//]: # (LesionTrace comprises four learnable components:)
 
-| Component | Description |
-|---|---|
-| **Lesion scorer** | Lightweight MLP supervised by pseudo-lesion masks $\tilde{\mathbf{M}}_t$ via $\mathcal{L}_{\text{map}}$ |
-| **Local lesion-aware pathway** | Lesion-masked cross-attention decomposing change into content $\cap$ and extent $\triangle$ |
-| **Global progression-aware pathway** | CLS cross-attention producing change vector $\Delta\mathbf{g}$, supervised by $\mathcal{L}_{\text{dir}}$ |
-| **Classification head** | Combines local and global representations to predict $\hat{y}$ |
+[//]: # ()
+[//]: # (| Component | Description |)
 
-### Training Strategy
+[//]: # (|---|---|)
 
-LesionTrace uses a two-phase training strategy:
+[//]: # (| **Lesion scorer** | Lightweight MLP supervised by pseudo-lesion masks $\tilde{\mathbf{M}}_t$ via $\mathcal{L}_{\text{map}}$ |)
 
-1. **Pseudo-lesion mask preparation** — PiPViT is trained on AMD-Mix and applied to the MARIO training set to generate per-visit pseudo-lesion masks $\tilde{\mathbf{M}}_t$
-2. **Change detection training** — LesionTrace is trained end-to-end using pseudo-lesion masks and pair-level change labels
+[//]: # (| **Local lesion-aware pathway** | Lesion-masked cross-attention decomposing change into content $\cap$ and extent $\triangle$ |)
 
-At inference, only LesionTrace is required.
+[//]: # (| **Global progression-aware pathway** | CLS cross-attention producing change vector $\Delta\mathbf{g}$, supervised by $\mathcal{L}_{\text{dir}}$ |)
+
+[//]: # (| **Classification head** | Combines local and global representations to predict $\hat{y}$ |)
+
+[//]: # (### Training Strategy)
+
+[//]: # ()
+[//]: # (LesionTrace uses a two-phase training strategy:)
+
+[//]: # ()
+[//]: # (1. **Pseudo-lesion mask preparation** — PiPViT is trained on AMD-Mix and applied to the MARIO training set to generate per-visit pseudo-lesion masks $\tilde{\mathbf{M}}_t$)
+
+[//]: # (2. **Change detection training** — LesionTrace is trained end-to-end using pseudo-lesion masks and pair-level change labels)
+
+[//]: # ()
+[//]: # (At inference, only LesionTrace is required.)
 
 ---
 
