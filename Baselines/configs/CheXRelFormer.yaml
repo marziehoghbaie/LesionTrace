@@ -1,0 +1,50 @@
+- model_inputs:
+    model_type: CheXRelFormer
+    image_size: 224
+    num_classes: 3
+    channels: 3
+    loss: 'focal'
+- dataset: #options: 9C(9), Kermany(4), OCTID(5), OCTDL(7)
+    dataset_name: MARIO
+    csv_train: MARIO/Data/Task_1/task_1_with_path_train.csv
+    csv_val: MARIO/Data/Task_1/task_1_with_path_val.csv
+    csv_test: MARIO/Data/Task_1/task_1_with_path_test.csv
+    mario_base_path: MARIO/Data/Task_1
+    shuffle: true
+    num_workers: 20
+
+- train_config:
+      train: true
+      pretrain: false
+      resume: false
+      load_path: ./
+      checkpoint: ./
+      num_epochs: 50
+      batch_size: 54
+      use_gpu: true
+      init_lr: 0.0001
+      optimizer: adamw
+      scheduler: cosine_with_warmup
+      step_coeff: 8
+      momentum: 0.9
+      weight_decay: 0.05
+      warmup_epochs: 10
+      T_mult: 1
+      eta_min: 0
+      last_epoch: -1
+      lr_cent: 0.005
+      # Specific for this project
+      MAX_ITER: 40000
+      THRESH: 0.5
+      THRESHS: [0.1,0.3,0.5]
+      LOSS_PARAM_CONV: 3
+      LOSS_PARAM_FC: 3
+      T0_MEAN_VALUE: (107.800,117.692,119.979)
+      T1_MEAN_VALUE: (110.655,117.107,119.135)
+
+- log:
+    save_path: DiseaseProgression/CheXRelFormer/log/
+
+- where : ./
+
+

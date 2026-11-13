@@ -1,0 +1,47 @@
+- model_inputs:
+    model_type: Model_YiDing
+    image_size: 224
+    num_classes: 3
+    channels: 1
+    loss: focal
+    late_fusion: true
+    attention: false
+
+- dataset: 
+    dataset_name: MARIO
+    csv_train: MARIO/Data/Task_1/task_1_with_path_train.csv
+    csv_val: MARIO/Data/Task_1/task_1_with_path_val.csv
+    csv_test: MARIO/Data/Task_1/task_1_with_path_test.csv
+    mario_base_path: MARIO/Data/Task_1
+    shuffle: true
+    num_workers: 20
+
+
+- train_config:
+      train: true
+      pretrain: false
+      resume: false
+      allow_size_mismatch: false
+      load_path: ./
+      checkpoint: ./
+      num_epochs: 50 # 5 more epochs for finetuning with more augmentation
+      batch_size: 54
+      use_gpu: true
+      init_lr: 0.0001
+      optimizer: adamw
+      scheduler: cosine_with_warmup
+      step_coeff: 8
+      momentum: 0.9
+      weight_decay: 0.05
+      warmup_epochs: 10
+      T_mult: 1
+      eta_min: 0
+      last_epoch: -1
+      lr_cent: 0.005
+
+
+
+- log:
+    save_path: DiseaseProgression/MARIO_Paper_baselines/log
+
+
