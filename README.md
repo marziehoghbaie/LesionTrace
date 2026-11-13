@@ -101,19 +101,30 @@ Reports AUPRC and Dice coefficient for visit-level lesion maps and pair-level ch
 ## Results
 
 ### Change Classification on MARIO
+Coming Soon!
 
-| Model | F1 (macro) | RK corr. | Specificity | Average |
-|---|---|---|---|---|
-| Yiding Hao | **0.839** | **0.761** | **0.922** | **0.841** |
-| Beltrán-Carrero et al. | 0.832 | 0.758 | 0.906 | 0.832 |
-| **LesionTrace (ours)** | 0.833 | 0.754 | 0.912 | 0.833 |
+[//]: # ()
+[//]: # (| Model | F1 &#40;macro&#41; | RK corr. | Specificity | Average |)
+
+[//]: # (|---|---|---|---|---|)
+
+[//]: # (| Yiding Hao | **0.839** | **0.761** | **0.922** | **0.841** |)
+
+[//]: # (| Beltrán-Carrero et al. | 0.832 | 0.758 | 0.906 | 0.832 |)
+
+[//]: # (| **LesionTrace &#40;ours&#41;** | 0.833 | 0.754 | 0.912 | 0.833 |)
 
 ### Spatial Localisation on TREND and CSC
+Coming Soon!
 
-| Model | TREND AUPRC | CSC AUPRC |
-|---|---|---|
-| Best baseline | 0.045 | 0.118 |
-| **LesionTrace (ours)** | **0.144** | **0.266** |
+[//]: # ()
+[//]: # (| Model | TREND AUPRC | CSC AUPRC |)
+
+[//]: # (|---|---|---|)
+
+[//]: # (| Best baseline | 0.045 | 0.118 |)
+
+[//]: # (| **LesionTrace &#40;ours&#41;** | **0.144** | **0.266** |)
 
 
 ---
